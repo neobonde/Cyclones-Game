@@ -5,31 +5,65 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
 
+    [Range(0,100000)]
+    public float walkAcceleration = 10000;
+    [Range(0,20)]
+    public float maxVelocity = 5;
+    public bool moveInAir = false;
+    public bool driftInAir = true;
+
+    Vector2 movement;
     Rigidbody2D rb;
-    float speed = 100;
+    Jump jump;
+    bool stopMovement = true;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
+        movement = Vector2.zero;
         rb = gameObject.GetComponent<Rigidbody2D>();
+        jump = GetComponent<Jump>();
+    }
+
+
+    void Update()
+    {
+        if(Input.GetButton("Horizontal"))
+        {
+            stopMovement = false;
+            movement = Vector2.right * Input.GetAxis("Horizontal");
+        }
+        else
+        {
+            stopMovement = true;
+        }
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        float hInput = Input.GetAxis("Horizontal");
+        if(!jump.getJumping() || moveInAir)
+        {
+            if(!stopMovement)
+            {
+            rb.velocity += movement * walkAcceleration * Time.deltaTime;  
 
-        Vector2 movement = new Vector2(hInput,0.0f);
+            Vector2 clampVel = rb.velocity;
+            clampVel.x = Mathf.Clamp(clampVel.x, -maxVelocity, maxVelocity);
 
-        
+            rb.velocity = clampVel;
 
-
-        rb.velocity += movement*speed*Time.deltaTime;
-        
-
-        // rb.MovePosition(movement*speed*Time.deltaTime);
-
-        // rb.AddRelativeForce(movement*speed*Time.deltaTime);
-
+            }
+            else
+            {
+                if(!driftInAir || !jump.getJumping())
+                {
+                    Vector2 vel = rb.velocity;
+                    vel.x = 0;
+                    
+                    rb.velocity = vel;
+                }
+            }
+        }
     }
 }
