@@ -55,7 +55,7 @@ public class Jump : MonoBehaviour
         }
         
         hit = Physics2D.Raycast(transform.position, -Vector2.up, groundedRayLength);
-        grounded = hit.collider != null && rb.velocity.y == 0 ? true : false;
+        grounded = hit.collider != null && Utils.inRange(rb.velocity.y, -0.1f,0.1f) ? true : false;
 
         if(grounded && jumping == true)
         {

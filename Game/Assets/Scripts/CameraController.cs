@@ -8,10 +8,14 @@ public class CameraController : MonoBehaviour
 
     public Vector2 smoothTime = new Vector2(0.05f,0.05f);
 
+    [Header("Camera Bounds only used if level bounds is false")]
+    public bool useLevelBounds = true;
     public Rect cameraBounds = new Rect(0,0,10,10);
 
     Transform player;
     Camera cam;
+
+    Rect bounds;
 
     void Awake()
     {
@@ -20,6 +24,13 @@ public class CameraController : MonoBehaviour
 
     void Start()
     {
+        if(useLevelBounds)
+        {
+            bounds = GameObject.FindGameObjectWithTag("LevelManager").GetComponent<Level>().cameraBounds;
+        }else
+        {
+            bounds = cameraBounds;
+        }
         player = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
@@ -33,8 +44,8 @@ public class CameraController : MonoBehaviour
         posZ = transform.position.z;
         transform.position = new Vector3(posX, posY, posZ);
         transform.position = new Vector3(
-            Mathf.Clamp(transform.position.x,cameraBounds.xMin,cameraBounds.xMax),           
-            Mathf.Clamp(transform.position.y,cameraBounds.yMin,cameraBounds.yMax),           
+            Mathf.Clamp(transform.position.x,bounds.xMin,bounds.xMax),           
+            Mathf.Clamp(transform.position.y,bounds.yMin,bounds.yMax),           
             posZ);
 
     }

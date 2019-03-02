@@ -17,6 +17,7 @@ public class PlayerController : MonoBehaviour
 
     Vector2 movement;
     Rigidbody2D rb;
+    Rect levelBounds;
     Jump jump;
     bool stopMovement = true;
     Vector2 vel;
@@ -25,6 +26,8 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
+        levelBounds = GameObject.FindGameObjectWithTag("LevelManager").GetComponent<Level>().bounds;
+        // Debug.Log(levelBounds);
         movement = Vector2.zero;
         rb = gameObject.GetComponent<Rigidbody2D>();
         jump = GetComponent<Jump>();
@@ -73,5 +76,14 @@ public class PlayerController : MonoBehaviour
             }
         }
         vel = rb.velocity;
+
+        // if(!levelBounds.Contains(transform.position))
+        // {
+        //     Debug.Log("test");
+        //     rb.velocity = Vector2.zero;
+        //     // Vector2 vel = rb.velocity;
+        //     // vel.x = 0;
+        //     // rb.velocity = vel; 
+        // }
     }
 }
