@@ -47,9 +47,9 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        acceleration = jump.getJumping()? inAirAcceleration: walkAcceleration;
+        acceleration = jump.getInAir()? inAirAcceleration: walkAcceleration;
 
-        if(!jump.getJumping() || moveInAir)
+        if(!jump.getInAir() || moveInAir)
         {
             if(!stopMovement)
             {
@@ -63,7 +63,7 @@ public class PlayerController : MonoBehaviour
             }
             else
             {
-                if(!driftInAir || !jump.getJumping())
+                if(!driftInAir || !jump.getInAir())
                 {
                     Vector2 vel = rb.velocity;
                     vel.x = 0;
