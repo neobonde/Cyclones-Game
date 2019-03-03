@@ -15,8 +15,6 @@ public class CameraController : MonoBehaviour
     Transform player;
     Camera cam;
 
-    Rect bounds;
-
     void Awake()
     {
         cam = GetComponent<Camera>();
@@ -26,11 +24,9 @@ public class CameraController : MonoBehaviour
     {
         if(useLevelBounds)
         {
-            bounds = GameObject.FindGameObjectWithTag("LevelManager").GetComponent<Level>().cameraBounds;
-        }else
-        {
-            bounds = cameraBounds;
+            cameraBounds = GameObject.FindGameObjectWithTag("LevelManager").GetComponent<Level>().bounds;
         }
+
         player = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
@@ -44,8 +40,8 @@ public class CameraController : MonoBehaviour
         posZ = transform.position.z;
         transform.position = new Vector3(posX, posY, posZ);
         transform.position = new Vector3(
-            Mathf.Clamp(transform.position.x,bounds.xMin,bounds.xMax),           
-            Mathf.Clamp(transform.position.y,bounds.yMin,bounds.yMax),           
+            Mathf.Clamp(transform.position.x,cameraBounds.xMin,cameraBounds.xMax),           
+            Mathf.Clamp(transform.position.y,cameraBounds.yMin,cameraBounds.yMax),           
             posZ);
 
     }

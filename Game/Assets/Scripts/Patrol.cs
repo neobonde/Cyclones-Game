@@ -18,12 +18,13 @@ public class Patrol : MonoBehaviour
 
     bool grounded = false; 
     float flipMultiplier = 1;
-    float flipTimeout = 0;
-    Rect levelBounds;
+    float flipTimeout;
     float flipTimeoutTime = 1;
+    Rect levelBounds;
 
     void Awake()
     {
+        flipTimeout = 0;
         levelBounds = GameObject.FindGameObjectWithTag("LevelManager").GetComponent<Level>().bounds;
         sr = GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
@@ -50,12 +51,12 @@ public class Patrol : MonoBehaviour
                     if (hit.collider == null && flipTimeout == 0)
                     {
                         flipTimeout = flipTimeoutTime;
+                        Debug.Log("edge" + flipTimeout);
                         flip();
                     }
-                    flipTimeout = flipTimeout <= 0 ? 0 : flipTimeout - Time.deltaTime;
                 }
+                flipTimeout = Mathf.Max(0, flipTimeout - Time.fixedDeltaTime);
             }
-
         }
 
         // foreach (var edgeSensor in edgeSensors)
@@ -81,8 +82,9 @@ public class Patrol : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D other)
     {
-        other.gameObject.tag = "Wall";
+        if (other.gameObject.tag == "Wall")// || other.gameObject.tag == "Enemy")
         {
+            Debug.Log("Wall");
             flip();
         }
     }

@@ -19,6 +19,7 @@ public class Cyclone : MonoBehaviour
             // {
             //     // rb.AddForce(upForce*2);
             // }else
+            if(rb.gameObject.tag == "Player")
             {
                 rb.velocity += Vector2.up * -Physics2D.gravity.y * ( pushMuliplier - 1 ) * Time.deltaTime;
                 // rb.AddForce(upForce);

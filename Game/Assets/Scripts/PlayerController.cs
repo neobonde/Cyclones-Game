@@ -24,7 +24,7 @@ public class PlayerController : MonoBehaviour
     float acceleration = 0;
 
     // Start is called before the first frame update
-    void Awake()
+    void Start()
     {
         levelBounds = GameObject.FindGameObjectWithTag("LevelManager").GetComponent<Level>().bounds;
         // Debug.Log(levelBounds);

@@ -14,7 +14,7 @@ public class Level : MonoBehaviour
     EdgeCollider2D rightCollider;
 
     List<Vector2> colliderPoints;
-    void Awake()
+    void Start()
     {
         transform.position = Vector2.zero;
         cameraBounds = bounds;

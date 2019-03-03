@@ -19,9 +19,12 @@ public class Jump : MonoBehaviour
     bool jumping = false;
 
     Rigidbody2D rb;
+    Transform feet;
+
 
     void Awake()
     {
+        feet = transform.Find("Feet");
         rb = GetComponent<Rigidbody2D>();
     }
 
@@ -54,7 +57,7 @@ public class Jump : MonoBehaviour
             rb.velocity += Vector2.up * jumpVelocity; 
         }
         
-        hit = Physics2D.Raycast(transform.position, -Vector2.up, groundedRayLength);
+        hit = Physics2D.Raycast(feet.position, -Vector2.up, groundedRayLength);
         grounded = hit.collider != null && Utils.inRange(rb.velocity.y, -0.1f,0.1f) ? true : false;
 
         if(grounded && jumping == true)
