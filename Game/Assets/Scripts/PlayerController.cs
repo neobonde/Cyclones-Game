@@ -42,39 +42,28 @@ public class PlayerController : MonoBehaviour
     }
 
 
-    float h;
     void Update()
     {
-        h = Input.GetAxis("Horizontal");
         if(Input.GetButton("Horizontal"))
         {
             stopMovement = false;
-            movement = Vector2.right * h;
+            movement = Vector2.right * Input.GetAxis("Horizontal");
         }
         else
         {
             stopMovement = true;
         }
 
-        if(h > 0)
-        {
-            sr.flipX = false;
-        }
-        else if (h < 0)
-        {
-            sr.flipX = true;
-        }
-
         if(Input.GetButtonDown("Jump"))
         {
             JumpCount ++;
         }
-        if(!jump.getInAir())
+        else if(!jump.getInAir())
         {
             JumpCount = 0;
         }
 
-        if(JumpCount == 1 && Input.GetButtonDown("Jump") && powerUp == null)
+        if(JumpCount == 2 && Input.GetButtonDown("Jump") && powerUp == null)
         {
             Debug.Log("GO!");
             powerUp = Instantiate(CyclonePowerUp);
@@ -85,6 +74,7 @@ public class PlayerController : MonoBehaviour
             transform.parent = powerUp.transform;
             powerUp.GetComponent<CloudController>().player = transform;
             animator.SetFloat("Speed",0);
+            DisableAll();
         }
 
 
@@ -136,5 +126,23 @@ public class PlayerController : MonoBehaviour
         //     // vel.x = 0;
         //     // rb.velocity = vel; 
         // }
+    }
+
+
+    public void DisableAll()
+    {
+        GetComponent<CapsuleCollider2D>().enabled = false;
+        GetComponent<Jump>().enabled = false;
+        GetComponent<PlayerCollisionController>().enabled = false;
+        enabled = false;
+    }
+
+    public void EnableAll()
+    {
+        GetComponent<CapsuleCollider2D>().enabled = true;
+        GetComponent<Jump>().enabled = true;
+        GetComponent<PlayerCollisionController>().enabled = true;
+        enabled = true;
+
     }
 }

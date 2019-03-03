@@ -67,7 +67,7 @@ public class CloudController : MonoBehaviour
         Debug.Log(gameObject.name + " Collided with: " + other.name);
         if(other.tag != "Player" && timeout <= 0)
         {
-            if(player != null)
+            if(player != null && other.tag !="Wall")
             {
                 LeaveCloud();
             }
@@ -79,10 +79,18 @@ public class CloudController : MonoBehaviour
 
     void LeaveCloud()
     {
-        player.parent = null;
         rbPlayer = player.GetComponent<Rigidbody2D>();
         rbPlayer.isKinematic = false;
-        rbPlayer.velocity = rb.velocity;
+        player.GetComponent<PlayerController>().EnableAll();
+        player.parent = null;
+        // rbPlayer.velocity = rb.velocity;
+        if(rb.velocity.y >= 0 )
+        {
+            rbPlayer.velocity = Vector2.up * 200;
+        }else{
+            // rbPlayer.velocity = Vector2.up * 200;
+            rbPlayer.velocity = rb.velocity;// + Vector2.up * 10;
+        }
         
         Destroy(gameObject);
     }

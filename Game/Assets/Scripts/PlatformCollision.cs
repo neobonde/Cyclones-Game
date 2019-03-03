@@ -16,7 +16,7 @@ public class PlatformCollision : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if(other.gameObject.tag == "Player")
+        if(other.gameObject.tag == "Player" && other.GetComponent<Rigidbody2D>().velocity.y > 0)
         {
             top.enabled = false;
             Debug.Log("hi");
