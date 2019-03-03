@@ -9,6 +9,10 @@ public class Jump : MonoBehaviour
     
     [Range(0,10)]
     public float slowJumpMultiplier = 2.0f;
+
+    [Range(0,10)]
+    public float externalForceMultiplier = 2.0f;
+
     
     [Range(0,10)]
     public float jumpVelocity = 5.0f;
@@ -19,9 +23,12 @@ public class Jump : MonoBehaviour
     bool jumping = false;
 
     Rigidbody2D rb;
+    Transform feet;
+
 
     void Awake()
     {
+        feet = transform.Find("Feet");
         rb = GetComponent<Rigidbody2D>();
     }
 
@@ -37,6 +44,7 @@ public class Jump : MonoBehaviour
     bool grounded;
     public float groundedRayLength = 0.33f;
     public float maxYVelocity = 10.0f;
+    // public float minYVelocity = -10.0f;
 
     float maxYVel = 0;
     float maxHeight = -Mathf.Infinity;
@@ -54,7 +62,7 @@ public class Jump : MonoBehaviour
             rb.velocity += Vector2.up * jumpVelocity; 
         }
         
-        hit = Physics2D.Raycast(transform.position, -Vector2.up, groundedRayLength);
+        hit = Physics2D.Raycast(feet.position, -Vector2.up, groundedRayLength);
         grounded = hit.collider != null && Utils.inRange(rb.velocity.y, -0.1f,0.1f) ? true : false;
 
         if(grounded && jumping == true)
@@ -67,7 +75,7 @@ public class Jump : MonoBehaviour
         {
             s = "vel < 0";
             rb.velocity += Vector2.up * Physics2D.gravity.y * ( fallMultiplier - 1 ) * Time.deltaTime;
-        }else if (rb.velocity.y > 0 && !Input.GetButton("Jump"))
+        }else if (rb.velocity.y > 0 && !Input.GetButton("Jump") && !externalForce)
         {
             s = "vel > 0 && !button jump";
             rb.velocity += Vector2.up * Physics2D.gravity.y * ( slowJumpMultiplier - 1 ) * Time.deltaTime; 
@@ -78,7 +86,7 @@ public class Jump : MonoBehaviour
         
         if(externalForce)
         {
-            rb.velocity += Vector2.up * Physics2D.gravity.y * ( slowJumpMultiplier - 1 ) * Time.deltaTime; 
+            rb.velocity += Vector2.up * Physics2D.gravity.y * ( externalForceMultiplier - 1 ) * Time.deltaTime; 
             s = "external force";
         }
 

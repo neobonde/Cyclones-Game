@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 4095067211294538702}
   - component: {fileID: 4095067211294538700}
   - component: {fileID: 4095067211294538697}
+  - component: {fileID: 951430630}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -118,7 +119,7 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_Size: {x: 0.34, y: 0.64}
+  m_Size: {x: 0.7, y: 1.27}
   m_Direction: 0
 --- !u!114 &4095067211294538700
 MonoBehaviour:
@@ -134,8 +135,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fallMultiplier: 2.5
   slowJumpMultiplier: 2
-  jumpVelocity: 5
-  groundedRayLength: 0.325
+  jumpVelocity: 6.2
+  externalForce: 0
+  groundedRayLength: 1
+  maxYVelocity: 10
 --- !u!114 &4095067211294538697
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -153,3 +156,15 @@ MonoBehaviour:
   maxVelocity: 5
   moveInAir: 1
   driftInAir: 1
+--- !u!114 &951430630
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4095067211294538739}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c1504bc4b74a9843b763ba2a122a0ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour
     public float maxVelocity = 5;
     public bool moveInAir = true;
     public bool driftInAir = true;
+    public GameObject CyclonePowerUp;
 
 
     Vector2 movement;
@@ -22,10 +23,17 @@ public class PlayerController : MonoBehaviour
     bool stopMovement = true;
     Vector2 vel;
     float acceleration = 0;
-
+    Animator animator;
+    SpriteRenderer sr;
+    Transform feet;
+    GameObject powerUp;
+    int JumpCount = 0;
     // Start is called before the first frame update
-    void Awake()
+    void Start()
     {
+        feet = transform.Find("Feet").transform;
+        sr = GetComponent<SpriteRenderer>();
+        animator = GetComponent<Animator>();
         levelBounds = GameObject.FindGameObjectWithTag("LevelManager").GetComponent<Level>().bounds;
         // Debug.Log(levelBounds);
         movement = Vector2.zero;
@@ -44,6 +52,39 @@ public class PlayerController : MonoBehaviour
         else
         {
             stopMovement = true;
+        }
+
+        if(Input.GetButtonDown("Jump"))
+        {
+            JumpCount ++;
+        }
+        else if(!jump.getInAir())
+        {
+            JumpCount = 0;
+        }
+
+        if(JumpCount == 2 && Input.GetButtonDown("Jump") && powerUp == null)
+        {
+            Debug.Log("GO!");
+            powerUp = Instantiate(CyclonePowerUp);
+            powerUp.transform.position = feet.position;
+            powerUp.GetComponent<Rigidbody2D>().velocity = rb.velocity/4;
+            rb.velocity = Vector2.zero;
+            rb.isKinematic = true;
+            transform.parent = powerUp.transform;
+            powerUp.GetComponent<CloudController>().player = transform;
+            animator.SetFloat("Speed",0);
+            DisableAll();
+        }
+
+
+        if (!jump.getInAir())
+        {
+            animator.SetFloat("Speed",Mathf.Abs(rb.velocity.x));
+        }
+        else
+        {
+            // animator.SetFloat("Speed",0);
         }
     }
 
@@ -85,5 +126,23 @@ public class PlayerController : MonoBehaviour
         //     // vel.x = 0;
         //     // rb.velocity = vel; 
         // }
+    }
+
+
+    public void DisableAll()
+    {
+        GetComponent<CapsuleCollider2D>().enabled = false;
+        GetComponent<Jump>().enabled = false;
+        GetComponent<PlayerCollisionController>().enabled = false;
+        enabled = false;
+    }
+
+    public void EnableAll()
+    {
+        GetComponent<CapsuleCollider2D>().enabled = true;
+        GetComponent<Jump>().enabled = true;
+        GetComponent<PlayerCollisionController>().enabled = true;
+        enabled = true;
+
     }
 }
