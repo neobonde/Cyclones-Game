@@ -5,12 +5,14 @@ using UnityEngine.SceneManagement;
 
 public class PlayerCollisionController : MonoBehaviour
 {
-
-
     Transform respawnPoint;
-
+    [HideInInspector]
+    public PowerViewer powerViewer;
+    
+    Transform feet;
     void Awake()
     {
+        feet = transform.Find("Feet");
         respawnPoint = GameObject.FindGameObjectWithTag("Respawn").transform;
         transform.position = respawnPoint.position;
     }
@@ -21,6 +23,14 @@ public class PlayerCollisionController : MonoBehaviour
 
     void Update()
     {
+    }
+
+    void FixedUpdate()
+    {
+        if(feet.position.y < -5)
+        {
+            restart();
+        }
     }
 
 
@@ -38,6 +48,11 @@ public class PlayerCollisionController : MonoBehaviour
         {
             restart();
         }
+        if(other.gameObject.tag == "Potion")
+        {
+            powerViewer.power += 0.1f;
+            Destroy(other.gameObject);
+        }
     }
 
 
@@ -45,7 +60,7 @@ public class PlayerCollisionController : MonoBehaviour
     {
         //Posible death animation here!
         Debug.Log("You have died!");
-        // SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
 }

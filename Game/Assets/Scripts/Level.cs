@@ -8,6 +8,8 @@ public class Level : MonoBehaviour
     [HideInInspector]
     public Rect cameraBounds;
 
+    public PhysicsMaterial2D wallPhysicsMaterial;
+
     Transform leftEdge; 
     Transform rightEdge; 
     EdgeCollider2D leftCollider;
@@ -31,6 +33,8 @@ public class Level : MonoBehaviour
         rightEdge.tag = "Wall";
         leftCollider = leftEdge.gameObject.AddComponent<EdgeCollider2D>();
         rightCollider = rightEdge.gameObject.AddComponent<EdgeCollider2D>();
+        leftCollider.sharedMaterial = wallPhysicsMaterial;
+        rightCollider.sharedMaterial = wallPhysicsMaterial;
 
         leftEdge.position = new Vector2(bounds.xMin-halfWidth,0);
         rightEdge.position = new Vector2(bounds.xMax+halfWidth,0);

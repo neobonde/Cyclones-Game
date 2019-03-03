@@ -14,6 +14,9 @@ public class CloudController : MonoBehaviour
     [HideInInspector]
     public Transform player;
 
+    [HideInInspector]
+    public PowerViewer powerViewer;
+
     float timeout = 0.0f;
     float timeSinceLastJump = 0;
 
@@ -49,6 +52,13 @@ public class CloudController : MonoBehaviour
         if( timeout < 0)
         {
             timeout = 0;
+        }
+
+        powerViewer.power -= rb.velocity.magnitude*0.001f;
+
+        if(powerViewer.power <= 0 )
+        {
+            LeaveCloud();
         }
 
     }

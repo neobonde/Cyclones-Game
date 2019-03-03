@@ -203,7 +203,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.03}
+  m_Offset: {x: -0.34, y: -0.03}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -214,7 +214,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.8, y: 0.56}
+  m_Size: {x: 1.21, y: 0.56}
   m_EdgeRadius: 0
 --- !u!1 &362092578853541849
 GameObject:
@@ -330,7 +330,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_text: '[A] & [D] to move
 
-    [Space] to jump'
+    [W] to jump'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -399,7 +399,7 @@ MonoBehaviour:
   m_margin: {x: 8.351196, y: 1.5699203, z: 8.359135, w: 1.5987928}
   m_textInfo:
     textComponent: {fileID: 0}
-    characterCount: 33
+    characterCount: 29
     spriteCount: 0
     spaceCount: 7
     wordCount: 7

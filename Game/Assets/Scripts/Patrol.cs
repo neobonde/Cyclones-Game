@@ -15,6 +15,7 @@ public class Patrol : MonoBehaviour
     Rigidbody2D rb;
     SpriteRenderer sr;
     RaycastHit2D hit;
+    Transform Player;
 
     bool grounded = false; 
     float flipMultiplier = 1;
@@ -24,6 +25,7 @@ public class Patrol : MonoBehaviour
 
     void Awake()
     {
+        Player = GameObject.FindGameObjectWithTag("Player").transform;
         flipTimeout = 0;
         levelBounds = GameObject.FindGameObjectWithTag("LevelManager").GetComponent<Level>().bounds;
         sr = GetComponent<SpriteRenderer>();
@@ -40,22 +42,26 @@ public class Patrol : MonoBehaviour
         grounded = hit.collider != null &&  Utils.inRange(rb.velocity.y, -0.1f,0.1f) ? true : false;        
         if(grounded)
         {
-            rb.velocity = Vector2.right * -patrolSpeed *Time.deltaTime * flipMultiplier;
-
-            if(edgeDetection)
+            Vector2 difference = Player.position - transform.position;
+            if(difference.x < 7)
             {
-                foreach (var edgeSensor in edgeSensors)
+                rb.velocity = Vector2.right * -patrolSpeed *Time.deltaTime * flipMultiplier;
+
+                if(edgeDetection)
                 {
-                    var hit = Physics2D.Raycast(edgeSensor.position, -Vector2.up, 0.2f);
-                    // Debug.Log(hit.collider);
-                    if (hit.collider == null && flipTimeout == 0)
+                    foreach (var edgeSensor in edgeSensors)
                     {
-                        flipTimeout = flipTimeoutTime;
-                        Debug.Log("edge" + flipTimeout);
-                        flip();
+                        var hit = Physics2D.Raycast(edgeSensor.position, -Vector2.up, 0.2f);
+                        // Debug.Log(hit.collider);
+                        if (hit.collider == null && flipTimeout == 0)
+                        {
+                            flipTimeout = flipTimeoutTime;
+                            Debug.Log("edge" + flipTimeout);
+                            flip();
+                        }
                     }
+                    flipTimeout = Mathf.Max(0, flipTimeout - Time.fixedDeltaTime);
                 }
-                flipTimeout = Mathf.Max(0, flipTimeout - Time.fixedDeltaTime);
             }
         }
 

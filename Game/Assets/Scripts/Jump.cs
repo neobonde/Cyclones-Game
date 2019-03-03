@@ -14,6 +14,9 @@ public class Jump : MonoBehaviour
     public float externalForceMultiplier = 2.0f;
 
     
+    [HideInInspector]
+    public bool ignoreMaxVelocity;
+
     [Range(0,10)]
     public float jumpVelocity = 5.0f;
 
@@ -96,7 +99,10 @@ public class Jump : MonoBehaviour
         }
 
         vel = rb.velocity;
+        if(!ignoreMaxVelocity)
+        {
         vel.y = Mathf.Clamp(vel.y,-Mathf.Infinity,maxYVelocity);
+        }
         rb.velocity = vel;
 
         if (rb.velocity.y > maxYVel)

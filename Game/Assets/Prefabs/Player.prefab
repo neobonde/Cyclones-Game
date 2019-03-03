@@ -1,5 +1,35 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &739232037
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 739232038}
+  m_Layer: 0
+  m_Name: Feet
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &739232038
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 739232037}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.6, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4095067211294538696}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4095067211294538739
 GameObject:
   m_ObjectHideFlags: 0
@@ -15,6 +45,8 @@ GameObject:
   - component: {fileID: 4095067211294538700}
   - component: {fileID: 4095067211294538697}
   - component: {fileID: 951430630}
+  - component: {fileID: 951430631}
+  - component: {fileID: 951430632}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -32,7 +64,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -4.699, y: -2.606, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 739232038}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -73,7 +106,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 9737f2be927e8fe4da3627d0c42af50d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e58e492e815a5ed4cbf396db802182f4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -118,8 +151,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 0.7, y: 1.27}
+  m_Offset: {x: -0.03, y: -0.12}
+  m_Size: {x: 0.21, y: 1.03}
   m_Direction: 0
 --- !u!114 &4095067211294538700
 MonoBehaviour:
@@ -133,12 +166,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ed737f124070c74e982f0bbd99a1705, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fallMultiplier: 2.5
-  slowJumpMultiplier: 2
-  jumpVelocity: 6.2
+  fallMultiplier: 3
+  slowJumpMultiplier: 6
+  externalForceMultiplier: 2
+  jumpVelocity: 6.5
   externalForce: 0
-  groundedRayLength: 1
-  maxYVelocity: 10
+  groundedRayLength: 0.1
+  maxYVelocity: 8
 --- !u!114 &4095067211294538697
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -156,6 +190,9 @@ MonoBehaviour:
   maxVelocity: 5
   moveInAir: 1
   driftInAir: 1
+  CyclonePowerUp: {fileID: 2163084236773447473, guid: 1cd833284b2ecda4291524af18961284,
+    type: 3}
+  powerViewer: {fileID: 0}
 --- !u!114 &951430630
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -166,5 +203,37 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4c1504bc4b74a9843b763ba2a122a0ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  powerViewer: {fileID: 0}
+--- !u!95 &951430631
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4095067211294538739}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 9700b6acf30aab64b892dc0b46e65f81, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &951430632
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4095067211294538739}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6f538f5bc7debc42931b52045d6b76b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

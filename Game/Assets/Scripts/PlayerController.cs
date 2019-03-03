@@ -27,6 +27,12 @@ public class PlayerController : MonoBehaviour
     SpriteRenderer sr;
     Transform feet;
     GameObject powerUp;
+    [HideInInspector]
+    public PowerViewer powerViewer;
+
+
+    float power = 0;
+
     int JumpCount = 0;
     // Start is called before the first frame update
     void Start()
@@ -63,7 +69,8 @@ public class PlayerController : MonoBehaviour
             JumpCount = 0;
         }
 
-        if(JumpCount == 2 && Input.GetButtonDown("Jump") && powerUp == null)
+
+        if(JumpCount == 2 && Input.GetButtonDown("Jump") && powerUp == null && powerViewer.power > 0)
         {
             Debug.Log("GO!");
             powerUp = Instantiate(CyclonePowerUp);
@@ -72,7 +79,9 @@ public class PlayerController : MonoBehaviour
             rb.velocity = Vector2.zero;
             rb.isKinematic = true;
             transform.parent = powerUp.transform;
-            powerUp.GetComponent<CloudController>().player = transform;
+            CloudController cc = powerUp.GetComponent<CloudController>();
+            cc.player = transform;
+            cc.powerViewer = powerViewer;
             animator.SetFloat("Speed",0);
             DisableAll();
         }
