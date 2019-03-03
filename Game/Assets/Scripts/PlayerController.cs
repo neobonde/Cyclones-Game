@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour
     public float maxVelocity = 5;
     public bool moveInAir = true;
     public bool driftInAir = true;
+    public GameObject CyclonePowerUp;
 
 
     Vector2 movement;
@@ -24,10 +25,13 @@ public class PlayerController : MonoBehaviour
     float acceleration = 0;
     Animator animator;
     SpriteRenderer sr;
-
+    Transform feet;
+    GameObject powerUp;
+    int JumpCount = 0;
     // Start is called before the first frame update
     void Start()
     {
+        feet = transform.Find("Feet").transform;
         sr = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
         levelBounds = GameObject.FindGameObjectWithTag("LevelManager").GetComponent<Level>().bounds;
@@ -60,6 +64,29 @@ public class PlayerController : MonoBehaviour
         {
             sr.flipX = true;
         }
+
+        if(Input.GetButtonDown("Jump"))
+        {
+            JumpCount ++;
+        }
+        if(!jump.getInAir())
+        {
+            JumpCount = 0;
+        }
+
+        if(JumpCount == 1 && Input.GetButtonDown("Jump") && powerUp == null)
+        {
+            Debug.Log("GO!");
+            powerUp = Instantiate(CyclonePowerUp);
+            powerUp.transform.position = feet.position;
+            powerUp.GetComponent<Rigidbody2D>().velocity = rb.velocity/4;
+            rb.velocity = Vector2.zero;
+            rb.isKinematic = true;
+            transform.parent = powerUp.transform;
+            powerUp.GetComponent<CloudController>().player = transform;
+            animator.SetFloat("Speed",0);
+        }
+
 
         if (!jump.getInAir())
         {
