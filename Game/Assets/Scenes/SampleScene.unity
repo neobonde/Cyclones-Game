@@ -421,12 +421,37 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &951430623 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4095067211294538739, guid: 924c0b83d483b554593db3b300cdf6b5,
+    type: 3}
+  m_PrefabInstance: {fileID: 4095067211423209004}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &951430629 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4095067211294538696, guid: 924c0b83d483b554593db3b300cdf6b5,
     type: 3}
   m_PrefabInstance: {fileID: 4095067211423209004}
   m_PrefabAsset: {fileID: 0}
+--- !u!95 &951430631
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 951430623}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 9700b6acf30aab64b892dc0b46e65f81, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1110321146
 GameObject:
   m_ObjectHideFlags: 0
@@ -586,7 +611,7 @@ PrefabInstance:
     - target: {fileID: 4624992296589090655, guid: ad340c0541f901f44b402d2f4fb664c0,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.74
+      value: 2.11
       objectReference: {fileID: 0}
     - target: {fileID: 4624992296589090655, guid: ad340c0541f901f44b402d2f4fb664c0,
         type: 3}
@@ -881,7 +906,7 @@ PrefabInstance:
     - target: {fileID: 7165701715547336430, guid: 494ae490915d9e64dbf41ed0fa3a761c,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.9
+      value: 3.27
       objectReference: {fileID: 0}
     - target: {fileID: 7165701715547336430, guid: 494ae490915d9e64dbf41ed0fa3a761c,
         type: 3}
@@ -1043,7 +1068,7 @@ PrefabInstance:
     - target: {fileID: 362092578735671081, guid: 60f7299c732525c4dbfc02f7075f0b41,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -6.58
+      value: -2.35
       objectReference: {fileID: 0}
     - target: {fileID: 362092578735671081, guid: 60f7299c732525c4dbfc02f7075f0b41,
         type: 3}
@@ -1204,11 +1229,31 @@ PrefabInstance:
       propertyPath: groundedRayLength
       value: 0.1
       objectReference: {fileID: 0}
+    - target: {fileID: 4095067211294538700, guid: 924c0b83d483b554593db3b300cdf6b5,
+        type: 3}
+      propertyPath: jumpVelocity
+      value: 6.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4095067211294538700, guid: 924c0b83d483b554593db3b300cdf6b5,
+        type: 3}
+      propertyPath: fallMultiplier
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4095067211294538700, guid: 924c0b83d483b554593db3b300cdf6b5,
+        type: 3}
+      propertyPath: slowJumpMultiplier
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4095067211294538700, guid: 924c0b83d483b554593db3b300cdf6b5,
+        type: 3}
+      propertyPath: maxYVelocity
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 4095067211294538703, guid: 924c0b83d483b554593db3b300cdf6b5,
         type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 8929066acc8eed448ba7c077934e5902,
+      objectReference: {fileID: 21300000, guid: e58e492e815a5ed4cbf396db802182f4,
         type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 924c0b83d483b554593db3b300cdf6b5, type: 3}
@@ -1362,11 +1407,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cyclone
       objectReference: {fileID: 0}
-    - target: {fileID: 7382354017758516935, guid: 1e96787a9b63eff4b9e9a7bb79ebaf87,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 7382354017758516933, guid: 1e96787a9b63eff4b9e9a7bb79ebaf87,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1424,13 +1464,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7382354017758516939, guid: 1e96787a9b63eff4b9e9a7bb79ebaf87,
         type: 3}
-      propertyPath: upForce.y
-      value: 40
-      objectReference: {fileID: 0}
-    - target: {fileID: 7382354017758516939, guid: 1e96787a9b63eff4b9e9a7bb79ebaf87,
-        type: 3}
       propertyPath: pushMuliplier
-      value: 10
+      value: 12
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1e96787a9b63eff4b9e9a7bb79ebaf87, type: 3}

@@ -22,10 +22,14 @@ public class PlayerController : MonoBehaviour
     bool stopMovement = true;
     Vector2 vel;
     float acceleration = 0;
+    Animator animator;
+    SpriteRenderer sr;
 
     // Start is called before the first frame update
     void Start()
     {
+        sr = GetComponent<SpriteRenderer>();
+        animator = GetComponent<Animator>();
         levelBounds = GameObject.FindGameObjectWithTag("LevelManager").GetComponent<Level>().bounds;
         // Debug.Log(levelBounds);
         movement = Vector2.zero;
@@ -34,16 +38,36 @@ public class PlayerController : MonoBehaviour
     }
 
 
+    float h;
     void Update()
     {
+        h = Input.GetAxis("Horizontal");
         if(Input.GetButton("Horizontal"))
         {
             stopMovement = false;
-            movement = Vector2.right * Input.GetAxis("Horizontal");
+            movement = Vector2.right * h;
         }
         else
         {
             stopMovement = true;
+        }
+
+        if(h > 0)
+        {
+            sr.flipX = false;
+        }
+        else if (h < 0)
+        {
+            sr.flipX = true;
+        }
+
+        if (!jump.getInAir())
+        {
+            animator.SetFloat("Speed",Mathf.Abs(rb.velocity.x));
+        }
+        else
+        {
+            // animator.SetFloat("Speed",0);
         }
     }
 
