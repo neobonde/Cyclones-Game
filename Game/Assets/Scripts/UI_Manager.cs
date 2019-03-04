@@ -14,6 +14,7 @@ public class UI_Manager : MonoBehaviour
 
     void Start()
     {
+        Resume();
         if (destroyMusic)
         {
             Destroy(GameObject.FindGameObjectWithTag("Ambience"));

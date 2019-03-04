@@ -72,16 +72,20 @@ public class PlayerCollisionController : MonoBehaviour
 
     void restart()
     {
-        //Posible death animation here!
-        audioSource.Play();
-        Debug.Log("You have died!");
-        time = 0.2f;
-        dead = true;
-        Rigidbody2D rb = GetComponent<Rigidbody2D>();
-        GetComponent<PlayerController>().enabled = false;
-        rb.isKinematic = true;
-        rb.velocity = Vector2.zero;
-        animator.SetBool("Dead", true);
+        if(!dead)
+        {
+            //Posible death animation here!
+            audioSource.Play();
+            Debug.Log("You have died!");
+            time = 0.2f;
+            dead = true;
+            Rigidbody2D rb = GetComponent<Rigidbody2D>();
+            GetComponent<PlayerController>().enabled = false;
+            rb.isKinematic = true;
+            rb.velocity = Vector2.zero;
+            animator.SetBool("Dead", true);
+
+        }
     }
 
 }

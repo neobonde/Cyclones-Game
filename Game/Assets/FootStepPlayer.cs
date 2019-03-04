@@ -11,6 +11,8 @@ public class FootStepPlayer : MonoBehaviour
     Rigidbody2D player;
     Jump jump;
 
+    public bool credits = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -27,9 +29,22 @@ public class FootStepPlayer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(!jump.getInAir() && Mathf.Abs(player.velocity.x) > 0.1)
+        if(jump != null && player != null)
         {
-            if(Timeout <= 0)
+            if(!jump.getInAir() && Mathf.Abs(player.velocity.x) > 0.1)
+            {
+                effect();
+            }
+        }else if(credits)
+        {
+            effect();
+        }
+    }
+
+
+    void effect()
+    {
+        if(Timeout <= 0)
             {
                 i = (i + 1)%sources.Count;
                 clip = footsteps[Random.Range( 0, footsteps.Count )];
@@ -42,8 +57,5 @@ public class FootStepPlayer : MonoBehaviour
             {
                 Timeout = 0;
             }
-
-
-        }
     }
 }

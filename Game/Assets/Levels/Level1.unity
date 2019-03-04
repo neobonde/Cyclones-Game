@@ -248,16 +248,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4095067211294538700, guid: 924c0b83d483b554593db3b300cdf6b5,
-        type: 3}
-      propertyPath: JumpSound
-      value: 
-      objectReference: {fileID: 8300000, guid: 262c7261b3fbf904a9b3759bcefecee3, type: 3}
-    - target: {fileID: 4095067211294538700, guid: 924c0b83d483b554593db3b300cdf6b5,
-        type: 3}
-      propertyPath: LandSound
-      value: 
-      objectReference: {fileID: 8300000, guid: 7fb25f665cf872a45926955adc54cbd1, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 924c0b83d483b554593db3b300cdf6b5, type: 3}
 --- !u!1001 &414538457
