@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7382354017758516932}
   - component: {fileID: 7382354017758516938}
   - component: {fileID: 7382354017758516939}
+  - component: {fileID: 2797994177507857369}
   m_Layer: 0
   m_Name: Cyclone
   m_TagString: Untagged
@@ -70,7 +71,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 8261542ab3ed4cb479a37b61d456fe7d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 98e5223ec75bb8d42bf8ed375f77d474, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -120,3 +121,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pushMuliplier: 12
+  EndLevel: 0
+--- !u!95 &2797994177507857369
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7382354017758516935}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 24c5b90c05f6adb478aa926b443bab56, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

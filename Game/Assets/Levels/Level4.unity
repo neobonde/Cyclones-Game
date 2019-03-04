@@ -250,6 +250,130 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ad340c0541f901f44b402d2f4fb664c0, type: 3}
+--- !u!1001 &151062822
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 362092578735671083, guid: 60f7299c732525c4dbfc02f7075f0b41,
+        type: 3}
+      propertyPath: m_Name
+      value: Sign
+      objectReference: {fileID: 0}
+    - target: {fileID: 362092578735671081, guid: 60f7299c732525c4dbfc02f7075f0b41,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 39.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 362092578735671081, guid: 60f7299c732525c4dbfc02f7075f0b41,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -2.0219393
+      objectReference: {fileID: 0}
+    - target: {fileID: 362092578735671081, guid: 60f7299c732525c4dbfc02f7075f0b41,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 362092578735671081, guid: 60f7299c732525c4dbfc02f7075f0b41,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 362092578735671081, guid: 60f7299c732525c4dbfc02f7075f0b41,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 362092578735671081, guid: 60f7299c732525c4dbfc02f7075f0b41,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 362092578735671081, guid: 60f7299c732525c4dbfc02f7075f0b41,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 362092578735671081, guid: 60f7299c732525c4dbfc02f7075f0b41,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 362092578735671081, guid: 60f7299c732525c4dbfc02f7075f0b41,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 362092578735671081, guid: 60f7299c732525c4dbfc02f7075f0b41,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 362092578735671081, guid: 60f7299c732525c4dbfc02f7075f0b41,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 362092578853541853, guid: 60f7299c732525c4dbfc02f7075f0b41,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 362092578853541855, guid: 60f7299c732525c4dbfc02f7075f0b41,
+        type: 3}
+      propertyPath: m_havePropertiesChanged
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 362092578853541855, guid: 60f7299c732525c4dbfc02f7075f0b41,
+        type: 3}
+      propertyPath: m_isInputParsingRequired
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 362092578853541855, guid: 60f7299c732525c4dbfc02f7075f0b41,
+        type: 3}
+      propertyPath: m_text
+      value: Try holding the jump button in the air
+      objectReference: {fileID: 0}
+    - target: {fileID: 362092578853541855, guid: 60f7299c732525c4dbfc02f7075f0b41,
+        type: 3}
+      propertyPath: m_textInfo.characterCount
+      value: 38
+      objectReference: {fileID: 0}
+    - target: {fileID: 362092578853541855, guid: 60f7299c732525c4dbfc02f7075f0b41,
+        type: 3}
+      propertyPath: m_textInfo.spaceCount
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 362092578853541855, guid: 60f7299c732525c4dbfc02f7075f0b41,
+        type: 3}
+      propertyPath: m_textInfo.wordCount
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 362092578853541855, guid: 60f7299c732525c4dbfc02f7075f0b41,
+        type: 3}
+      propertyPath: m_textInfo.lineCount
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 362092578853541855, guid: 60f7299c732525c4dbfc02f7075f0b41,
+        type: 3}
+      propertyPath: m_margin.z
+      value: 9.086795
+      objectReference: {fileID: 0}
+    - target: {fileID: 362092578853541848, guid: 60f7299c732525c4dbfc02f7075f0b41,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 362092578853541848, guid: 60f7299c732525c4dbfc02f7075f0b41,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -0.01
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 60f7299c732525c4dbfc02f7075f0b41, type: 3}
 --- !u!1001 &172497842
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1328,7 +1452,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 23
+  m_RootOrder: 24
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1028288565
 PrefabInstance:
