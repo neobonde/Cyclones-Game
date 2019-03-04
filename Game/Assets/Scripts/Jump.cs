@@ -27,10 +27,14 @@ public class Jump : MonoBehaviour
 
     Rigidbody2D rb;
     Transform feet;
-
+    Animator animator;
+    public AudioSource audioSource;
+    public AudioClip JumpSound;
+    public AudioClip LandSound;
 
     void Awake()
     {
+        animator = GetComponent<Animator>();
         feet = transform.Find("Feet");
         rb = GetComponent<Rigidbody2D>();
     }
@@ -56,10 +60,16 @@ public class Jump : MonoBehaviour
 
     string s = "none";
 
+    bool prevGrounded = false;
+
     void FixedUpdate()
     {
         if(jump)
         {
+            animator.SetBool("Jumping",true);
+            audioSource.clip = JumpSound;
+            audioSource.Play();
+            
             jump = false;
             jumping = true;
             rb.velocity += Vector2.up * jumpVelocity; 
@@ -70,8 +80,18 @@ public class Jump : MonoBehaviour
 
         if(grounded && jumping == true)
         {
+            animator.SetBool("Jumping",false);
             jumping = false;
         }
+
+        if(grounded && !prevGrounded)
+        {
+            audioSource.clip = LandSound;
+            audioSource.Play();
+        }
+        prevGrounded = grounded;
+
+        animator.SetBool("Jumping",!grounded);
 
 
         if(rb.velocity.y < 0 )

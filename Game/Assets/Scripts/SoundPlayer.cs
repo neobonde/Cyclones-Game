@@ -4,16 +4,11 @@ using UnityEngine;
 
 public class SoundPlayer : MonoBehaviour
 {
-    private List<AudioSource> audioSources;
+    public List<AudioSource> audioSources;
     private void Awake()
     {
         GameObject[] gos = GameObject.FindGameObjectsWithTag("Ambience");
         DontDestroyOnLoad(transform.gameObject);
-
-        foreach (Transform child in transform)
-        {
-            audioSources.Add(child.GetComponent<AudioSource>());    
-        }
 
         if (gos.Length > 1)
         {

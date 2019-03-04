@@ -6,10 +6,55 @@ using UnityEngine.SceneManagement;
 public class UI_Manager : MonoBehaviour
 {
 
+    bool gameIsPaused = false;
+
+    public GameObject PauseUI;
+
+    public bool destroyMusic = false;
+
     void Start()
     {
-        Destroy(GameObject.FindGameObjectWithTag("Ambience"));
+        if (destroyMusic)
+        {
+            Destroy(GameObject.FindGameObjectWithTag("Ambience"));
+        }
     }
+
+    void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            if(gameIsPaused)
+            {
+                Resume();
+            }else{
+                Pause();
+            }
+        }
+    }
+
+
+
+    public void Pause()
+    {
+        if(PauseUI != null)
+        {
+            gameIsPaused = true;
+            PauseUI.SetActive(true);
+            Time.timeScale = 0.0f;
+        }
+    }
+
+    public void Resume()
+    {
+        if(PauseUI != null)
+        {
+            gameIsPaused = false;
+            PauseUI.SetActive(false);
+            Time.timeScale = 1.0f;
+        }
+    }
+
 
     public void Quit()
     {
