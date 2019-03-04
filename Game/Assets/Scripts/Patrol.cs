@@ -23,6 +23,8 @@ public class Patrol : MonoBehaviour
     float flipTimeoutTime = 1;
     Rect levelBounds;
 
+    public bool startFlipped = false;
+
     void Awake()
     {
         Player = GameObject.FindGameObjectWithTag("Player").transform;
@@ -35,6 +37,14 @@ public class Patrol : MonoBehaviour
 
     }
 
+    void Start()
+    {
+        if(startFlipped)
+        {
+            flip();
+        }
+    }
+
     void FixedUpdate()
     {
         hit = Physics2D.Raycast(transform.position, -Vector2.up, groundedRayLength);
@@ -43,7 +53,7 @@ public class Patrol : MonoBehaviour
         if(grounded)
         {
             Vector2 difference = Player.position - transform.position;
-            if(difference.x < 7)
+            if(Mathf.Abs(difference.x) < 8)
             {
                 rb.velocity = Vector2.right * -patrolSpeed *Time.deltaTime * flipMultiplier;
 

@@ -15,7 +15,7 @@ public class fadeout : MonoBehaviour
 
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         gameObject.SetActive(true);
         image = gameObject.GetComponent<Image>();
@@ -25,6 +25,7 @@ public class fadeout : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Debug.Log(alpha);
         alpha = Mathf.SmoothDamp(image.color.a, 0.0f, ref alphaVelocity, 1f);
         color.a = alpha;
         image.color = color;

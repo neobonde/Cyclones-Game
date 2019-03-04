@@ -35,7 +35,6 @@ public class Cyclone : MonoBehaviour
         rb = other.GetComponent<Rigidbody2D>();
         jump = other.GetComponent<Jump>();
         if(jump != null) { jump.externalForce = true;}
-        jump.ignoreMaxVelocity = EndLevel;
         // velocity = rb.velocity;
         // if(velocity.y > 0 )
         // {

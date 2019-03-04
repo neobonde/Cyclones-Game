@@ -8,10 +8,13 @@ public class PlayerCollisionController : MonoBehaviour
     Transform respawnPoint;
     [HideInInspector]
     public PowerViewer powerViewer;
+    public AudioSource audioSource;
+    public Animator animator;
     
     Transform feet;
     void Awake()
     {
+        animator = GetComponent<Animator>();
         feet = transform.Find("Feet");
         respawnPoint = GameObject.FindGameObjectWithTag("Respawn").transform;
         transform.position = respawnPoint.position;
@@ -21,8 +24,19 @@ public class PlayerCollisionController : MonoBehaviour
     {
     }
 
+    bool dead = false;
+    float time;
     void Update()
     {
+        if(dead)
+        {
+            Debug.Log(time);
+            if (time <= 0 )
+            {
+                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            }
+            time -= Time.deltaTime;
+        }
     }
 
     void FixedUpdate()
@@ -58,9 +72,20 @@ public class PlayerCollisionController : MonoBehaviour
 
     void restart()
     {
-        //Posible death animation here!
-        Debug.Log("You have died!");
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        if(!dead)
+        {
+            //Posible death animation here!
+            audioSource.Play();
+            Debug.Log("You have died!");
+            time = 0.2f;
+            dead = true;
+            Rigidbody2D rb = GetComponent<Rigidbody2D>();
+            GetComponent<PlayerController>().enabled = false;
+            rb.isKinematic = true;
+            rb.velocity = Vector2.zero;
+            animator.SetBool("Dead", true);
+
+        }
     }
 
 }
